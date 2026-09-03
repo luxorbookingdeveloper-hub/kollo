@@ -1,0 +1,31 @@
+/* ============ 01. DESIGN TOKENS (CSS Vars) ============ */
+:root {
+  --f-ar: "Cairo", "Tajawal", "Noto Kufi Arabic", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", sans-serif;
+  --sand-50: #fbf7f0; --sand-100: #f4ece0; --sand-200: #e8dbc8; --sand-300: #d8c4a6; --sand-400: #bfa579;
+  --ink-900: #1b1712; --ink-800: #2a241c; --ink-700: #3c342a; --ink-600: #5b5045; --ink-400: #8b7f70; --ink-300: #ab9f90;
+  --nile: #0f766e; --nile-2: #14958b; --mint: #2fbf9b; --terra: #c2410c; --amber: #d97706; --rose: #be123c; --violet: #6d28d9;
+  --bg: var(--sand-50); --bg-2: #fff; --bg-3: var(--sand-100); --line: var(--sand-200); --line-2: var(--sand-300);
+  --tx: var(--ink-900); --tx-2: var(--ink-600); --tx-3: var(--ink-400);
+  --accent: var(--nile); --accent-2: var(--nile-2); --on-accent: #fff; --warn: var(--amber); --bad: var(--rose); --good: var(--mint);
+  --r-1: 8px; --r-2: 12px; --r-3: 16px; --r-4: 22px; --r-full: 999px;
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-6: 24px; --s-8: 32px; --s-12: 48px;
+  --sh-1: 0 1px 2px rgba(27,23,18,.06), 0 1px 3px rgba(27,23,18,.04);
+  --sh-2: 0 4px 10px rgba(27,23,18,.07), 0 2px 4px rgba(27,23,18,.04);
+  --sh-3: 0 12px 28px rgba(27,23,18,.12), 0 4px 8px rgba(27,23,18,.06);
+  --sh-4: 0 28px 60px rgba(27,23,18,.20);
+  --ez: cubic-bezier(.2,.8,.2,1); --t-1: 150ms; --t-2: 250ms;
+  --fs: 1rem; --side: 264px; --head: 58px; --tabs: 62px;
+  font-feature-settings: "ss01" 1, "liga" 1, "calt" 1;
+}
+
+html[data-theme="dark"] {
+  --bg: #131110; --bg-2: #1c1917; --bg-3: #241f1c; --line: #2f2925; --line-2: #3d352f;
+  --tx: #f6f1e8; --tx-2: #c9c0b3; --tx-3: #948b7f; --accent: #2fbf9b; --accent-2: #41d3ae; --on-accent: #08221d;
+  --sh-1: 0 1px 2px rgba(0,0,0,.4); --sh-2: 0 4px 10px rgba(0,0,0,.45);
+  --sh-3: 0 12px 28px rgba(0,0,0,.55); --sh-4: 0 28px 60px rgba(0,0,0,.6);
+}
+
+html[data-theme="retro"] {
+  --bg: #f2e9d8; --bg-2: #fffdf6; --bg-3: #eadfc7; --line: #d9c9a5; --line-2: #c3ad80;
+  --tx: #2b2417; --tx-2: #5c4f37; --accent: #8a5a1f; --accent-2: #b1782f; --on-accent: #fff8ec;
+}

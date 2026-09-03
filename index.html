@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>كله — مدير حياتك اللي مش بينسى</title>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+<div class="app" id="app">
+  <nav class="sidebar" id="side" aria-label="التنقل الرئيسي"></nav>
+  <div>
+    <header class="head">
+      <button class="b g" data-act="menu" aria-label="القائمة" title="القائمة" onclick="openMore()">☰</button>
+      <div class="ttl" id="head-ttl"><span id="logo"></span><span>كله</span></div>
+      <div class="sp"></div>
+      <button class="b g" data-act="pal" aria-label="بحث وأوامر (Ctrl+K)" title="Ctrl+K" onclick="openPalette()">🔍</button>
+      <button class="b g" data-act="theme" aria-label="تغيير الثيم" title="الثيم" onclick="cycleTheme()">◐</button>
+      <button class="b p sm" data-act="ai" aria-label="الأسطى" title="الأسطى" onclick="Router.go('ai')">الأسطى</button>
+    </header>
+    <main class="main" id="view" tabindex="-1"></main>
+  </div>
+</div>
+<nav class="tabbar" id="tabs" aria-label="تنقل سريع"></nav>
+<button class="fab" data-act="quick" aria-label="إضافة سريعة" onclick="openPalette()">＋</button>
+<div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+<div id="layers"></div>
+
+<!-- Core Layer -->
+<script src="js/core/utils.js"></script>
+<script src="js/core/crypto.js"></script>
+<script src="js/core/db.js"></script>
+<script src="js/core/store.js"></script>
+<script src="js/core/repos.js"></script>
+<script src="js/core/ui.js"></script>
+<script src="js/core/charts.js"></script>
+<script src="js/core/worker.js"></script>
+<script src="js/core/auto.js"></script>
+<script src="js/core/helpers.js"></script>
+<script src="js/core/router.js"></script>
+
+<!-- Feature Services -->
+<script src="js/features/backup.js"></script>
+<script src="js/features/palette.js"></script>
+<script src="js/features/shortcuts.js"></script>
+<script src="js/features/easter-eggs.js"></script>
+<script src="js/features/badges.js"></script>
+<script src="js/features/reminders.js"></script>
+
+<!-- AI Engine -->
+<script src="js/ai/ai-core.js"></script>
+<script src="js/ai/system-prompt.js"></script>
+<script src="js/ai/agent-loop.js"></script>
+
+<!-- Tool Registry & Definitions -->
+<script src="js/tools/tools-registry.js"></script>
+<script src="js/tools/search-tools.js"></script>
+<script src="js/tools/task-tools.js"></script>
+<script src="js/tools/habit-tools.js"></script>
+<script src="js/tools/calendar-tools.js"></script>
+<script src="js/tools/notes-tools.js"></script>
+<script src="js/tools/money-tools.js"></script>
+<script src="js/tools/health-tools.js"></script>
+<script src="js/tools/mood-tools.js"></script>
+<script src="js/tools/goals-tools.js"></script>
+<script src="js/tools/learn-tools.js"></script>
+<script src="js/tools/people-tools.js"></script>
+<script src="js/tools/home-tools.js"></script>
+<script src="js/tools/work-tools.js"></script>
+<script src="js/tools/kitchen-tools.js"></script>
+<script src="js/tools/auto-tools.js"></script>
+<script src="js/tools/ui-tools.js"></script>
+<script src="js/tools/system-tools.js"></script>
+
+<!-- Module Views -->
+<script src="js/modules/today.js"></script>
+<script src="js/modules/tasks.js"></script>
+<script src="js/modules/habits.js"></script>
+<script src="js/modules/calendar.js"></script>
+<script src="js/modules/notes.js"></script>
+<script src="js/modules/money.js"></script>
+<script src="js/modules/health.js"></script>
+<script src="js/modules/mood.js"></script>
+<script src="js/modules/goals.js"></script>
+<script src="js/modules/learn.js"></script>
+<script src="js/modules/people.js"></script>
+<script src="js/modules/home.js"></script>
+<script src="js/modules/work.js"></script>
+<script src="js/modules/kitchen.js"></script>
+<script src="js/modules/spirit.js"></script>
+<script src="js/modules/docs.js"></script>
+<script src="js/modules/auto-view.js"></script>
+<script src="js/modules/reports.js"></script>
+<script src="js/modules/trash.js"></script>
+<script src="js/modules/settings.js"></script>
+<script src="js/modules/tests.js"></script>
+<script src="js/ai/ai-view.js"></script>
+
+<!-- Lifecycle & Bootstrap -->
+<script src="js/app.js"></script>
+</body>
+</html>

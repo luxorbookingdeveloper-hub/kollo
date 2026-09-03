@@ -1,0 +1,117 @@
+/* ============ 02. RESET + BASE + RTL ============ */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: var(--fs);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--f-ar);
+  background: var(--bg);
+  color: var(--tx);
+  line-height: 1.6;
+  overscroll-behavior-y: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, p, figure {
+  margin: 0;
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+ul, ol {
+  margin: 0;
+  padding-inline-start: 1.1em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent-2);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.num {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--line-2);
+  border-radius: 99px;
+  border: 3px solid var(--bg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: .001ms !important;
+    transition-duration: .001ms !important;
+  }
+}
+
+@media print {
+  .head, .tabbar, .fab, .sidebar, .no-print {
+    display: none !important;
+  }
+  .main {
+    padding: 0;
+    max-width: none;
+  }
+  .card {
+    box-shadow: none;
+    border-color: #ccc;
+    break-inside: avoid;
+  }
+  body {
+    background: #fff;
+    color: #000;
+  }
+}
