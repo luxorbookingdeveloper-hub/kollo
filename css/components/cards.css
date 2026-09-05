@@ -1,0 +1,141 @@
+/* ============================================================================
+   كله — Kollo | Components: Cards, Grids & Data Visuals
+   ============================================================================ */
+
+.card {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-1);
+}
+
+.card.pad {
+  padding: var(--s-4);
+}
+
+.grid {
+  display: grid;
+  gap: var(--s-3);
+}
+
+.g2 {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.g3 {
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.sec-h {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: var(--s-6) 0 var(--s-2);
+}
+
+.sec-h h2 {
+  font-size: 1.02rem;
+  font-weight: 800;
+}
+
+.muted { color: var(--tx-2); }
+.dim { color: var(--tx-3); }
+.sm { font-size: .82rem; }
+.xs { font-size: .74rem; }
+
+.empty {
+  text-align: center;
+  padding: var(--s-8) var(--s-4);
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+}
+
+.empty h3 {
+  font-weight: 800;
+}
+
+.prog {
+  height: 8px;
+  background: var(--bg-3);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.prog > i {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  border-radius: 99px;
+  transition: width var(--t-2) var(--ez);
+}
+
+.sk {
+  background: linear-gradient(90deg, var(--bg-3), color-mix(in oklab, var(--bg-3) 55%, var(--bg-2)), var(--bg-3));
+  background-size: 200% 100%;
+  animation: sh 1.2s infinite;
+  border-radius: var(--r-1);
+  height: 14px;
+}
+
+@keyframes sh {
+  from { background-position: 200% 0; }
+  to { background-position: -40% 0; }
+}
+
+.kpi {
+  display: grid;
+  gap: 2px;
+  padding: var(--s-4);
+}
+
+.kpi b {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -.03em;
+}
+
+.hm {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(7, 12px);
+  gap: 3px;
+  overflow: auto;
+  padding-bottom: 4px;
+}
+
+.hm i {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  background: var(--bg-3);
+}
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--r-full);
+  background: var(--bg-3);
+  display: grid;
+  place-items: center;
+  flex: 0 0 34px;
+}
+
+.stg {
+  animation: stg var(--t-2) var(--ez) both;
+}
+
+@keyframes stg {
+  from { opacity: 0; transform: translateY(7px); }
+  to { opacity: 1; transform: none; }
+}

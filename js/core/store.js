@@ -34,17 +34,17 @@ const DEF_SETTINGS = {
     baseUrl: '',
     keyEnc: null,
     keyPlain: '',
-    temperature: 0.7,
+    temperature: 1.0,
     topP: 0.95,
-    topK: 40,
-    maxTokens: 4096,
+    topK: 64,
+    maxTokens: 65536,
     stream: true,
     reasoning: 'medium',
     includeReasoning: false,
-    maxSteps: 12,
+    maxSteps: 0,
     trust: false,
     attribution: true,
-    timeout: 60000,
+    timeout: 180000,
     interactions: false
   },
   modules: {},
@@ -67,6 +67,13 @@ async function loadSettings() {
   const s = await dbGet('settings', 'app');
   S.settings = Object.assign(JSON.parse(JSON.stringify(DEF_SETTINGS)), s || {});
   S.settings.ai = Object.assign({}, DEF_SETTINGS.ai, (s && s.ai) || {});
+  if (s && s.ai) {
+    if (s.ai.maxTokens === 4096) S.settings.ai.maxTokens = 65536;
+    if (s.ai.maxSteps === 12) S.settings.ai.maxSteps = 0;
+    if (s.ai.temperature === 0.7) S.settings.ai.temperature = 1.0;
+    if (s.ai.topK === 40) S.settings.ai.topK = 64;
+    if (s.ai.timeout === 60000) S.settings.ai.timeout = 180000;
+  }
   S.settings.id = 'app';
   applyTheme();
 }

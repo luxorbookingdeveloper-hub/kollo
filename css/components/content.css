@@ -1,0 +1,85 @@
+/* ============================================================================
+   كله — Kollo | Components: AI Chat Messages, Markdown & Tables
+   ============================================================================ */
+
+.aimsg {
+  display: grid;
+  gap: 6px;
+  padding: 11px 13px;
+  border-radius: var(--r-3);
+  max-width: min(94%, 720px);
+  font-size: .93rem;
+}
+
+.aimsg.u {
+  background: var(--accent);
+  color: var(--on-accent);
+  margin-inline-start: auto;
+  border-end-end-radius: 6px;
+}
+
+.aimsg.a {
+  background: var(--bg-3);
+  border-end-start-radius: 6px;
+}
+
+.aimsg.t {
+  background: transparent;
+  border: 1px dashed var(--line-2);
+  font-family: ui-monospace, monospace;
+  font-size: .78rem;
+  direction: ltr;
+  text-align: left;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.md p {
+  margin: .4em 0;
+}
+
+.md code {
+  background: var(--bg-3);
+  padding: 1px 5px;
+  border-radius: 5px;
+  font-size: .85em;
+  direction: ltr;
+  display: inline-block;
+}
+
+.md pre {
+  background: var(--ink-900);
+  color: #f4ecdd;
+  padding: 10px;
+  border-radius: var(--r-2);
+  overflow: auto;
+  direction: ltr;
+  text-align: left;
+}
+
+.md ul {
+  margin: .3em 0;
+}
+
+table.tb {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .86rem;
+}
+
+table.tb th, table.tb td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: start;
+}
+
+table.tb th {
+  font-size: .76rem;
+  color: var(--tx-2);
+  position: sticky;
+  top: 0;
+  background: var(--bg-2);
+}
+
+.ok { color: var(--good); }
+.no { color: var(--bad); }

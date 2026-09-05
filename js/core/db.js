@@ -1,68 +1,17 @@
 /* ============================================================================
    كله — Kollo | Database Layer (IndexedDB wrapper + migrations)
    ============================================================================ */
-const SCHEMA = {
-  tasks: ['status', 'due', 'projectId', 'priority', '*tags'],
-  projects: ['status'],
-  habits: ['active'],
-  habitLogs: ['habitId', 'date', 'habitId+date'],
-  events: ['start'],
-  notes: ['updatedAt', '*tags'],
-  noteLinks: ['from', 'to'],
-  accounts: ['type'],
-  txns: ['date', 'accountId', 'categoryId', 'type'],
-  categories: ['kind'],
-  budgets: ['month', 'categoryId'],
-  debts: ['dir', 'status'],
-  installments: ['due', 'status'],
-  subscriptions: ['nextDue'],
-  gam3iyat: ['status'],
-  goals: ['status'],
-  keyResults: ['goalId'],
-  people: ['birthday', 'lastContact'],
-  socialDuties: ['date', 'personId'],
-  healthLogs: ['type', 'date', 'type+date'],
-  meds: ['active'],
-  medDoses: ['medId', 'date'],
-  moodLogs: ['date'],
-  journal: ['date'],
-  books: ['status'],
-  courses: ['status'],
-  cards: ['due', 'noteId'],
-  assets: ['category'],
-  warranties: ['expiry'],
-  vehicles: [],
-  maintenance: ['vehicleId', 'due'],
-  bills: ['kind', 'date'],
-  documents: ['expiry', 'kind'],
-  attachments: ['refId'],
-  shoppingItems: ['done'],
-  pantry: ['expiry'],
-  recipes: [],
-  timeLogs: ['date', 'projectId'],
-  pomodoros: ['date'],
-  automations: ['active'],
-  aiChats: ['updatedAt'],
-  aiMessages: ['chatId'],
-  aiToolCalls: ['chatId', 'batchId'],
-  clients: [],
-  invoices: ['status', 'due'],
-  worship: ['date', 'kind'],
-  settings: [],
-  trash: ['store', 'deletedAt'],
-  activityLog: ['at']
-};
-
 const DB = { h: null };
 
 function migrate(oldV, newV, txInstance, db) {
   /* v0 -> v1 : إنشاء كل الجداول والفهارس */
   if (oldV < 1) {
-    for (const name in SCHEMA) {
+    const schema = window.SCHEMA || SCHEMA;
+    for (const name in schema) {
       const st = db.objectStoreNames.contains(name)
         ? txInstance.objectStore(name)
         : db.createObjectStore(name, { keyPath: 'id' });
-      SCHEMA[name].forEach(ix => {
+      schema[name].forEach(ix => {
         let multi = false, n = ix;
         if (n[0] === '*') {
           multi = true;
@@ -113,7 +62,8 @@ async function copyFromOldDB(oldDbName) {
       q.onsuccess = () => r(q.result);
       q.onerror = () => j(q.error);
     });
-    for (const s of Object.keys(SCHEMA)) {
+    const schema = window.SCHEMA || SCHEMA;
+    for (const s of Object.keys(schema)) {
       if (!oldDb.objectStoreNames.contains(s)) continue;
       const rows = await new Promise(r => {
         const tr = oldDb.transaction(s, 'readonly');
@@ -201,5 +151,5 @@ async function dbCount(store) {
 
 // Bind to window
 Object.assign(window, {
-  SCHEMA, DB, migrate, openDB, pReq, tx, dbGet, dbPut, dbDel, dbAll, dbIndex, dbCount
+  DB, migrate, openDB, pReq, tx, dbGet, dbPut, dbDel, dbAll, dbIndex, dbCount
 });

@@ -148,25 +148,23 @@ async function backupUI() {
       {
         label: '⬇️ صدّر',
         fn: async () => {
+          const enc = pw.value.trim();
           const data = await exportAll(wbi.checked);
-          if (pw.value) {
-            const enc = await Crypt.enc(JSON.stringify(data), pw.value);
-            dl('kollo-backup-' + today() + '.json', JSON.stringify({ app: 'kollo', enc }, null, 0));
-          } else {
-            dl('kollo-backup-' + today() + '.json', JSON.stringify(data));
+          let text = JSON.stringify(data, null, 2), mime = 'application/json', ext = 'json';
+          if (enc) {
+            text = await encrypt(text, enc);
+            mime = 'text/plain';
+            ext = 'enc';
           }
-          UI.toast('نزّلنا النسخة 👌');
-          return false;
+          downloadFile('kollo-backup-' + today() + '.' + ext, text, mime);
+          UI.toast('اتحمّلت النسخة');
         }
       },
       {
         label: '⬆️ استورد (دمج)',
         kind: 'p',
         fn: async () => {
-          if (!parsed) {
-            UI.toast('اختار ملف الأول');
-            return false;
-          }
+          if (!parsed) return UI.toast('اختار ملف الأول') && false;
           const n = await importAll(parsed, 'merge');
           Bus.emit('data');
           UI.toast('استوردنا ' + fmtN(n, 0) + ' صف');
@@ -177,13 +175,8 @@ async function backupUI() {
         label: 'استبدال كامل',
         kind: 'd',
         fn: async () => {
-          if (!parsed) {
-            UI.toast('اختار ملف الأول');
-            return false;
-          }
-          if (!(await UI.confirm('استبدال كل الداتا؟', 'ده هيمسح كل حاجة موجودة ويحل مكانها النسخة. مفيش رجوع.', true))) {
-            return false;
-          }
+          if (!parsed) return UI.toast('اختار ملف الأول') && false;
+          if (!(await UI.confirm('استبدال كل الداتا؟', 'ده هيمسح كل حاجة موجودة ويحل مكانها النسخة. مفيش رجوع.', true))) return false;
           const n = await importAll(parsed, 'replace');
           Bus.emit('data');
           UI.toast('استبدلنا بـ' + fmtN(n, 0) + ' صف');

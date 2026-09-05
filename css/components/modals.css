@@ -1,0 +1,184 @@
+/* ============================================================================
+   كله — Kollo | Components: Sheets, Modals, Toasts, Command Palette & Virtual List
+   ============================================================================ */
+
+.sheet-bd {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgba(20, 16, 12, .5);
+  opacity: 0;
+  transition: opacity var(--t-2) var(--ez);
+  backdrop-filter: blur(3px);
+}
+
+.sheet-bd.in {
+  opacity: 1;
+}
+
+.sheet {
+  position: fixed;
+  z-index: 61;
+  background: var(--bg-2);
+  box-shadow: var(--sh-4);
+  display: flex;
+  flex-direction: column;
+}
+
+.sheet.bottom {
+  inset-inline: 0;
+  bottom: 0;
+  max-height: 88dvh;
+  border-radius: var(--r-4) var(--r-4) 0 0;
+  transform: translateY(102%);
+  transition: transform var(--t-2) var(--ez);
+}
+
+.sheet.bottom.in {
+  transform: translateY(0);
+}
+
+.sheet .hd {
+  padding: var(--s-4);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: sticky;
+  top: 0;
+  background: var(--bg-2);
+  z-index: 2;
+}
+
+.sheet .bd {
+  padding: var(--s-4);
+  overflow: auto;
+  flex: 1;
+}
+
+.sheet .ft {
+  padding: var(--s-3) var(--s-4);
+  border-top: 1px solid var(--line);
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  background: var(--bg-2);
+}
+
+.grab {
+  width: 44px;
+  height: 5px;
+  background: var(--line-2);
+  border-radius: 99px;
+  margin: 8px auto 0;
+}
+
+.toasts {
+  position: fixed;
+  z-index: 80;
+  inset-inline: 0;
+  bottom: calc(var(--tabs) + 90px);
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+  pointer-events: none;
+  padding: 0 12px;
+}
+
+.toast {
+  pointer-events: auto;
+  background: var(--ink-900);
+  color: #fdf9f2;
+  border-radius: var(--r-2);
+  padding: 11px 14px;
+  box-shadow: var(--sh-3);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  max-width: 520px;
+  animation: tin var(--t-2) var(--ez);
+  font-size: .88rem;
+  font-weight: 600;
+}
+
+html[data-theme="dark"] .toast {
+  background: #efe7d9;
+  color: #17130f;
+}
+
+@keyframes tin {
+  from { opacity: 0; transform: translateY(14px) scale(.97); }
+  to { opacity: 1; transform: none; }
+}
+
+.toast .u {
+  color: var(--accent-2);
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+.pal {
+  position: fixed;
+  z-index: 70;
+  inset-inline: 0;
+  top: 8vh;
+  margin-inline: auto;
+  width: min(680px, 94vw);
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  box-shadow: var(--sh-4);
+  overflow: hidden;
+  transform: translateY(-10px) scale(.99);
+  opacity: 0;
+  transition: all var(--t-2) var(--ez);
+}
+
+.pal.in {
+  transform: none;
+  opacity: 1;
+}
+
+.pal input {
+  width: 100%;
+  border: 0;
+  padding: 16px;
+  font-size: 1.05rem;
+  background: transparent;
+  outline: none;
+}
+
+.pal .res {
+  max-height: 56vh;
+  overflow: auto;
+  border-top: 1px solid var(--line);
+}
+
+.pal .it {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 11px 16px;
+  cursor: pointer;
+  font-size: .92rem;
+}
+
+.pal .it[aria-selected="true"] {
+  background: var(--bg-3);
+}
+
+.vl {
+  position: relative;
+  overflow: auto;
+  contain: strict;
+}
+
+.vl-in {
+  position: relative;
+}
+
+.vl-row {
+  position: absolute;
+  inset-inline: 0;
+  contain: layout paint style;
+}

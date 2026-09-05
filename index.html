@@ -30,27 +30,46 @@
 <div id="layers"></div>
 
 <!-- Core Layer -->
+<script src="js/core/date-utils.js"></script>
+<script src="js/core/text-utils.js"></script>
 <script src="js/core/utils.js"></script>
 <script src="js/core/crypto.js"></script>
+<script src="js/core/db-schema.js"></script>
 <script src="js/core/db.js"></script>
 <script src="js/core/store.js"></script>
 <script src="js/core/repos.js"></script>
+<script src="js/core/ui-dialogs.js"></script>
+<script src="js/core/ui-forms.js"></script>
 <script src="js/core/ui.js"></script>
+<script src="js/core/charts-more.js"></script>
 <script src="js/core/charts.js"></script>
 <script src="js/core/worker.js"></script>
 <script src="js/core/auto.js"></script>
+<script src="js/core/helpers/tones.js"></script>
+<script src="js/core/helpers/finance-helpers.js"></script>
+<script src="js/core/helpers/srs-helpers.js"></script>
+<script src="js/core/helpers/schemas-life.js"></script>
+<script src="js/core/helpers/schemas.js"></script>
+<script src="js/core/helpers/editor.js"></script>
+<script src="js/core/helpers/collection-view.js"></script>
 <script src="js/core/helpers.js"></script>
 <script src="js/core/router.js"></script>
 
 <!-- Feature Services -->
 <script src="js/features/backup.js"></script>
+<script src="js/features/search.js"></script>
 <script src="js/features/palette.js"></script>
 <script src="js/features/shortcuts.js"></script>
 <script src="js/features/easter-eggs.js"></script>
 <script src="js/features/badges.js"></script>
 <script src="js/features/reminders.js"></script>
+<script src="js/features/onboarding/onboarding-steps.js"></script>
+<script src="js/features/onboarding.js"></script>
 
 <!-- AI Engine -->
+<script src="js/ai/ai-config.js"></script>
+<script src="js/ai/ai-converters.js"></script>
+<script src="js/ai/ai-call.js"></script>
 <script src="js/ai/ai-core.js"></script>
 <script src="js/ai/system-prompt.js"></script>
 <script src="js/ai/agent-loop.js"></script>
@@ -59,10 +78,12 @@
 <script src="js/tools/tools-registry.js"></script>
 <script src="js/tools/search-tools.js"></script>
 <script src="js/tools/task-tools.js"></script>
+<script src="js/tools/project-tools.js"></script>
 <script src="js/tools/habit-tools.js"></script>
 <script src="js/tools/calendar-tools.js"></script>
 <script src="js/tools/notes-tools.js"></script>
 <script src="js/tools/money-tools.js"></script>
+<script src="js/tools/budget-tools.js"></script>
 <script src="js/tools/health-tools.js"></script>
 <script src="js/tools/mood-tools.js"></script>
 <script src="js/tools/goals-tools.js"></script>
@@ -76,18 +97,29 @@
 <script src="js/tools/system-tools.js"></script>
 
 <!-- Module Views -->
+<script src="js/modules/today/mental-load.js"></script>
+<script src="js/modules/today/task-row.js"></script>
+<script src="js/modules/today/daily-shutdown.js"></script>
 <script src="js/modules/today.js"></script>
 <script src="js/modules/tasks.js"></script>
 <script src="js/modules/habits.js"></script>
 <script src="js/modules/calendar.js"></script>
 <script src="js/modules/notes.js"></script>
+<script src="js/modules/money/money-dialogs.js"></script>
+<script src="js/modules/money/money-overview.js"></script>
+<script src="js/modules/money/money-txns-budgets.js"></script>
+<script src="js/modules/money/money-gam3ia-zakat.js"></script>
+<script src="js/modules/money/money-tabs.js"></script>
 <script src="js/modules/money.js"></script>
 <script src="js/modules/health.js"></script>
 <script src="js/modules/mood.js"></script>
+<script src="js/modules/goals/weekly-review.js"></script>
 <script src="js/modules/goals.js"></script>
+<script src="js/modules/learn/srs-session.js"></script>
 <script src="js/modules/learn.js"></script>
 <script src="js/modules/people.js"></script>
 <script src="js/modules/home.js"></script>
+<script src="js/modules/work/pomodoro.js"></script>
 <script src="js/modules/work.js"></script>
 <script src="js/modules/kitchen.js"></script>
 <script src="js/modules/spirit.js"></script>
@@ -95,8 +127,27 @@
 <script src="js/modules/auto-view.js"></script>
 <script src="js/modules/reports.js"></script>
 <script src="js/modules/trash.js"></script>
+<script src="js/modules/settings/settings-ai-params.js"></script>
+<script src="js/modules/settings/settings-ai-models.js"></script>
+<script src="js/modules/settings/settings-ai.js"></script>
+<script src="js/modules/settings/settings-privacy.js"></script>
+<script src="js/modules/settings/settings-general.js"></script>
 <script src="js/modules/settings.js"></script>
+
+<!-- Test Suite -->
+<script src="js/modules/tests/tests-core.js"></script>
+<script src="js/modules/tests/tests-ai-tools.js"></script>
+<script src="js/modules/tests/tests-ai-stream.js"></script>
+<script src="js/modules/tests/tests-ai-agent.js"></script>
+<script src="js/modules/tests/tests-features.js"></script>
+<script src="js/modules/tests/tests-tools.js"></script>
+<script src="js/modules/tests/tests-ui.js"></script>
+<script src="js/modules/tests/test-utils.js"></script>
+<script src="js/modules/tests/test-runner.js"></script>
 <script src="js/modules/tests.js"></script>
+
+<!-- AI View -->
+<script src="js/ai/ai-chat-ui.js"></script>
 <script src="js/ai/ai-view.js"></script>
 
 <!-- Lifecycle & Bootstrap -->

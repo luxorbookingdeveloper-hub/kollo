@@ -21,8 +21,13 @@ async function agentRun(userText, ui) {
 
   try {
     for (;;) {
-      if (steps >= (s.maxSteps || 12)) {
-        ui.note('وصلنا حد الخطوات (' + fmtN(s.maxSteps || 12, 0) + '). أوقف هنا وأقولك اللي عملته.');
+      const maxLimit = typeof s.maxSteps === 'number' ? s.maxSteps : 0;
+      if (maxLimit > 0 && steps >= maxLimit) {
+        ui.note('وصلنا حد الخطوات (' + fmtN(maxLimit, 0) + '). أوقف هنا وأقولك اللي عملته.');
+        break;
+      }
+      if (maxLimit <= 0 && steps >= 100) {
+        ui.note('وصلنا لأقصى حد أمان تلقائي (١٠٠ خطوة). أوقف هنا وأقولك اللي عملته.');
         break;
       }
       steps++;

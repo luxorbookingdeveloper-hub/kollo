@@ -1,0 +1,93 @@
+/* ============================================================================
+   كله — Kollo | Components: Responsive Layout & Desktop Breakpoints
+   ============================================================================ */
+
+@media (min-width: 960px) {
+  .app {
+    grid-template-columns: var(--side) 1fr;
+  }
+
+  .sidebar {
+    display: block;
+    position: sticky;
+    top: 0;
+    height: 100dvh;
+    overflow: auto;
+    border-inline-end: 1px solid var(--line);
+    background: var(--bg-2);
+    padding: var(--s-4) var(--s-3);
+  }
+
+  .sidebar a {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 9px 11px;
+    border-radius: var(--r-2);
+    color: var(--tx-2);
+    font-weight: 700;
+    font-size: .88rem;
+    min-height: 42px;
+  }
+
+  .sidebar a[aria-current="page"] {
+    background: var(--bg-3);
+    color: var(--tx);
+  }
+
+  .tabbar {
+    display: none;
+  }
+
+  .fab {
+    bottom: 24px;
+  }
+
+  .main {
+    padding-bottom: var(--s-12);
+  }
+
+  .toasts {
+    bottom: 24px;
+    inset-inline-start: auto;
+    inset-inline-end: 24px;
+    justify-items: end;
+  }
+
+  /* Centered Modal / Sheet on Desktop */
+  .sheet.bottom {
+    top: 50%;
+    bottom: auto;
+    left: 0;
+    right: 0;
+    inset-inline: 0;
+    margin-inline: auto;
+    width: min(580px, 92vw);
+    max-height: 86dvh;
+    border-radius: var(--r-4);
+    border: 1px solid var(--line);
+    transform: translateY(-46%) scale(0.96);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--t-2) var(--ez), transform var(--t-2) var(--ez);
+  }
+
+  .sheet.bottom .grab {
+    display: none;
+  }
+
+  html[dir="rtl"] .sheet.bottom {
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    border-radius: var(--r-4);
+    transform: translateY(-46%) scale(0.96);
+  }
+
+  html[dir="rtl"] .sheet.bottom.in,
+  .sheet.bottom.in {
+    transform: translateY(-50%) scale(1) !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+}

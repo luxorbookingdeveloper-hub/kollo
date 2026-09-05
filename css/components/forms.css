@@ -1,0 +1,162 @@
+/* ============================================================================
+   كله — Kollo | Components: Buttons, Inputs, Chips, Badges & Lists
+   ============================================================================ */
+
+.b {
+  border: 1px solid var(--line);
+  border-radius: var(--r-2);
+  padding: 10px 14px;
+  background: var(--bg-2);
+  font-weight: 700;
+  font-size: .9rem;
+  transition: transform var(--t-1) var(--ez), background var(--t-1), box-shadow var(--t-1);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+}
+
+.b:hover { background: var(--bg-3); }
+.b:active { transform: translateY(1px); }
+.b.p { background: var(--accent); color: var(--on-accent); border-color: transparent; box-shadow: var(--sh-1); }
+.b.p:hover { background: var(--accent-2); }
+.b.g { background: transparent; border-color: transparent; }
+.b.d { color: var(--bad); border-color: color-mix(in oklab, var(--bad) 35%, var(--line)); }
+.b.sm { min-height: 34px; padding: 6px 10px; font-size: .8rem; border-radius: var(--r-1); }
+.b[disabled] { opacity: .45; pointer-events: none; }
+
+.in, select.in, textarea.in {
+  width: 100%;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-2);
+  padding: 11px 12px;
+  min-height: 44px;
+  transition: border-color var(--t-1), box-shadow var(--t-1);
+}
+
+.in:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 22%, transparent);
+  outline: none;
+}
+
+textarea.in {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.fld {
+  display: grid;
+  gap: 6px;
+  margin-bottom: var(--s-3);
+}
+
+.fld > label {
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--tx-2);
+}
+
+.chip {
+  border: 1px solid var(--line-2);
+  background: var(--bg-2);
+  border-radius: var(--r-full);
+  padding: 5px 11px;
+  font-size: .78rem;
+  font-weight: 700;
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  min-height: 32px;
+}
+
+.chip[aria-pressed="true"], .chip.on {
+  background: var(--accent);
+  color: var(--on-accent);
+  border-color: transparent;
+}
+
+.badge {
+  border-radius: var(--r-full);
+  padding: 2px 9px;
+  font-size: .7rem;
+  font-weight: 800;
+  background: var(--bg-3);
+  color: var(--tx-2);
+  display: inline-block;
+}
+
+.badge.a { background: color-mix(in oklab, var(--accent) 18%, transparent); color: var(--accent); }
+.badge.w { background: color-mix(in oklab, var(--warn) 20%, transparent); color: var(--warn); }
+.badge.b { background: color-mix(in oklab, var(--bad) 18%, transparent); color: var(--bad); }
+
+.seg {
+  display: inline-flex;
+  background: var(--bg-3);
+  border-radius: var(--r-full);
+  padding: 3px;
+  gap: 2px;
+  overflow: auto;
+  max-width: 100%;
+}
+
+.seg button {
+  padding: 7px 13px;
+  border-radius: var(--r-full);
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--tx-2);
+  white-space: nowrap;
+  min-height: 36px;
+}
+
+.seg button[aria-selected="true"] {
+  background: var(--bg-2);
+  color: var(--tx);
+  box-shadow: var(--sh-1);
+}
+
+.li {
+  display: flex;
+  gap: var(--s-3);
+  align-items: flex-start;
+  padding: 12px var(--s-4);
+  border-bottom: 1px solid var(--line);
+  contain: layout paint;
+}
+
+.li:last-child {
+  border-bottom: 0;
+}
+
+.li:hover {
+  background: color-mix(in oklab, var(--bg-3) 60%, transparent);
+}
+
+.li .t {
+  font-weight: 700;
+}
+
+.done .t {
+  text-decoration: line-through;
+  color: var(--tx-3);
+}
+
+.cb {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  border: 2px solid var(--line-2);
+  border-radius: 7px;
+  display: grid;
+  place-items: center;
+  margin-top: 2px;
+  transition: all var(--t-1) var(--ez);
+}
+
+.cb[aria-checked="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}

@@ -1,0 +1,107 @@
+/* ============================================================================
+   كله — Kollo | Components: Layout & Navigation (App, Header, Tabbar, Sidebar, Fab)
+   ============================================================================ */
+
+.app {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.head {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  height: var(--head);
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: 0 var(--s-3);
+  background: color-mix(in oklab, var(--bg) 82%, transparent);
+  backdrop-filter: saturate(140%) blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+
+.head .ttl {
+  font-weight: 800;
+  letter-spacing: -.02em;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.head .sp {
+  flex: 1;
+}
+
+.main {
+  padding: var(--s-4) var(--s-3) calc(var(--tabs) + 84px);
+  max-width: 1180px;
+  margin-inline: auto;
+  width: 100%;
+}
+
+.sidebar {
+  display: none;
+}
+
+.tabbar {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 45;
+  height: calc(var(--tabs) + env(safe-area-inset-bottom));
+  padding-bottom: env(safe-area-inset-bottom);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  background: color-mix(in oklab, var(--bg-2) 92%, transparent);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--line);
+}
+
+.tabbar b {
+  font-weight: 600;
+  font-size: .66rem;
+}
+
+.tabbar button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  color: var(--tx-3);
+  transition: color var(--t-1) var(--ez);
+}
+
+.tabbar button[aria-current="page"] {
+  color: var(--accent);
+}
+
+.fab {
+  position: fixed;
+  inset-inline-end: 16px;
+  bottom: calc(var(--tabs) + 18px + env(safe-area-inset-bottom));
+  z-index: 46;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--r-full);
+  background: var(--accent);
+  color: var(--on-accent);
+  box-shadow: var(--sh-3);
+  display: grid;
+  place-items: center;
+  transition: transform var(--t-1) var(--ez);
+}
+
+.fab:active {
+  transform: scale(.93);
+}
+
+.focus-on .head,
+.focus-on .tabbar,
+.focus-on .fab,
+.focus-on .sidebar {
+  display: none !important;
+}
