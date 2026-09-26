@@ -1,85 +1,104 @@
 /* ============================================================================
-   كله — Kollo | Components: AI Chat Messages, Markdown & Tables
+   كُـلّـه — Kollo | Components: AI Chat Messages, Markdown & Tables
+   Modern Chat Bubbles, Clean Data Tables & Formatted Content Blocks
    ============================================================================ */
 
 .aimsg {
   display: grid;
   gap: 6px;
-  padding: 11px 13px;
+  padding: 12px 16px;
   border-radius: var(--r-3);
-  max-width: min(94%, 720px);
-  font-size: .93rem;
+  max-width: min(92%, 720px);
+  font-size: 0.94rem;
+  line-height: 1.6;
+  box-shadow: var(--sh-1);
 }
 
 .aimsg.u {
   background: var(--accent);
   color: var(--on-accent);
   margin-inline-start: auto;
-  border-end-end-radius: 6px;
+  border-end-end-radius: 4px;
 }
 
 .aimsg.a {
-  background: var(--bg-3);
-  border-end-start-radius: 6px;
+  background: var(--bg-2);
+  color: var(--tx);
+  border: 1px solid var(--line);
+  border-end-start-radius: 4px;
 }
 
 .aimsg.t {
-  background: transparent;
+  background: var(--bg-3);
   border: 1px dashed var(--line-2);
-  font-family: ui-monospace, monospace;
-  font-size: .78rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.8rem;
   direction: ltr;
   text-align: left;
   white-space: pre-wrap;
   word-break: break-word;
+  color: var(--tx-2);
+  border-radius: var(--r-2);
 }
 
 .md p {
-  margin: .4em 0;
+  margin: 0.4em 0;
 }
 
 .md code {
   background: var(--bg-3);
-  padding: 1px 5px;
-  border-radius: 5px;
-  font-size: .85em;
+  color: var(--accent);
+  padding: 2px 6px;
+  border-radius: var(--r-1);
+  font-size: 0.88em;
+  font-family: ui-monospace, SFMono-Regular, monospace;
   direction: ltr;
   display: inline-block;
 }
 
 .md pre {
-  background: var(--ink-900);
-  color: #f4ecdd;
-  padding: 10px;
+  background: var(--slate-900);
+  color: #f8fafc;
+  padding: 12px 14px;
   border-radius: var(--r-2);
-  overflow: auto;
+  overflow-x: auto;
   direction: ltr;
   text-align: left;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .md ul {
-  margin: .3em 0;
+  margin: 0.4em 0;
+  padding-inline-start: 1.2em;
 }
 
 table.tb {
   width: 100%;
   border-collapse: collapse;
-  font-size: .86rem;
+  font-size: 0.88rem;
 }
 
 table.tb th, table.tb td {
-  padding: 9px 10px;
+  padding: 10px 12px;
   border-bottom: 1px solid var(--line);
   text-align: start;
 }
 
 table.tb th {
-  font-size: .76rem;
+  font-size: 0.78rem;
+  font-weight: 700;
   color: var(--tx-2);
   position: sticky;
   top: 0;
   background: var(--bg-2);
+  z-index: 1;
 }
 
-.ok { color: var(--good); }
-.no { color: var(--bad); }
+table.tb tr:hover td {
+  background: color-mix(in oklab, var(--bg-3) 50%, transparent);
+}
+
+.ok { color: var(--good); font-weight: 700; }
+.no { color: var(--bad); font-weight: 700; }

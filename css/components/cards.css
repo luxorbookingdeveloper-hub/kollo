@@ -1,5 +1,6 @@
 /* ============================================================================
-   كله — Kollo | Components: Cards, Grids & Data Visuals
+   كُـلّـه — Kollo | Components: Cards, Grids & Data Visuals
+   Modern Card Elevation, Crisp Outlines, Refined KPI Blocks & Micro-interactions
    ============================================================================ */
 
 .card {
@@ -7,6 +8,7 @@
   border: 1px solid var(--line);
   border-radius: var(--r-3);
   box-shadow: var(--sh-1);
+  transition: transform var(--t-1) var(--ez), box-shadow var(--t-1) var(--ez), border-color var(--t-1) var(--ez);
 }
 
 .card.pad {
@@ -39,51 +41,55 @@
 .sec-h {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   margin: var(--s-6) 0 var(--s-2);
 }
 
 .sec-h h2 {
-  font-size: 1.02rem;
+  font-size: 1.12rem;
   font-weight: 800;
+  color: var(--tx);
+  letter-spacing: -0.01em;
 }
 
 .muted { color: var(--tx-2); }
 .dim { color: var(--tx-3); }
-.sm { font-size: .82rem; }
-.xs { font-size: .74rem; }
+.sm { font-size: 0.85rem; }
+.xs { font-size: 0.75rem; }
 
 .empty {
   text-align: center;
   padding: var(--s-8) var(--s-4);
   display: grid;
-  gap: 10px;
+  gap: 12px;
   justify-items: center;
 }
 
 .empty h3 {
   font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--tx);
 }
 
 .prog {
   height: 8px;
   background: var(--bg-3);
-  border-radius: 99px;
+  border-radius: var(--r-full);
   overflow: hidden;
 }
 
 .prog > i {
   display: block;
   height: 100%;
-  background: var(--accent);
-  border-radius: 99px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  border-radius: var(--r-full);
   transition: width var(--t-2) var(--ez);
 }
 
 .sk {
-  background: linear-gradient(90deg, var(--bg-3), color-mix(in oklab, var(--bg-3) 55%, var(--bg-2)), var(--bg-3));
+  background: linear-gradient(90deg, var(--bg-3), color-mix(in oklab, var(--bg-3) 50%, var(--bg-2)), var(--bg-3));
   background-size: 200% 100%;
-  animation: sh 1.2s infinite;
+  animation: sh 1.3s infinite ease-in-out;
   border-radius: var(--r-1);
   height: 14px;
 }
@@ -95,40 +101,47 @@
 
 .kpi {
   display: grid;
-  gap: 2px;
+  gap: 4px;
   padding: var(--s-4);
+  border-radius: var(--r-3);
 }
 
 .kpi b {
-  font-size: 1.5rem;
+  font-size: 1.65rem;
   font-weight: 800;
-  letter-spacing: -.03em;
+  letter-spacing: -0.03em;
+  color: var(--tx);
+  line-height: 1.2;
 }
 
 .hm {
   display: grid;
   grid-auto-flow: column;
-  grid-template-rows: repeat(7, 12px);
-  gap: 3px;
-  overflow: auto;
-  padding-bottom: 4px;
+  grid-template-rows: repeat(7, 13px);
+  gap: 4px;
+  overflow-x: auto;
+  padding-bottom: 6px;
 }
 
 .hm i {
-  width: 12px;
-  height: 12px;
+  width: 13px;
+  height: 13px;
   border-radius: 3px;
   background: var(--bg-3);
+  transition: background var(--t-1) var(--ez);
 }
 
 .avatar {
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
   border-radius: var(--r-full);
   background: var(--bg-3);
   display: grid;
   place-items: center;
-  flex: 0 0 34px;
+  flex: 0 0 38px;
+  color: var(--tx-2);
+  font-weight: 700;
+  border: 1px solid var(--line);
 }
 
 .stg {
@@ -136,6 +149,6 @@
 }
 
 @keyframes stg {
-  from { opacity: 0; transform: translateY(7px); }
+  from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: none; }
 }

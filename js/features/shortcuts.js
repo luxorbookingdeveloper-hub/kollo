@@ -67,6 +67,7 @@ function bindShortcuts() {
   /* اقفل الطبقة اللي فوق بالـEscape لو الشاشة نفسها مقفلتهاش */
   document.addEventListener('keydown', e => {
     if (e.key !== 'Escape') return;
+    if (typeof closeDrawer === 'function') closeDrawer();
     const l = $('#layers');
     if (l && !l.children.length && document.body.classList.contains('focus-on')) {
       document.body.classList.remove('focus-on');

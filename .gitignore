@@ -1,6 +1,57 @@
-# Backups and temporary files
-*.bak
-*.tmp
-*.log
+# Operating System
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+Thumbs.db:encryptable
+desktop.ini
+$RECYCLE.BIN/
+
+# Editors & IDEs
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+*.swp
+*.swo
+*~
+
+# Agent Workspaces & Local Customizations
+.agents/
+
+# Environment & Secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.cert
+
+# Logs & Diagnostics
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Node / Dependencies (if used locally)
+node_modules/
+
+# Build, Dist & Cache
+dist/
+build/
+out/
+.cache/
+.parcel-cache/
+
+# Backups & Temporary files
+*.bak
+*.backup
+*.tmp
+*.temp
+*.orig
+backups/
+kollo-backup-*.json

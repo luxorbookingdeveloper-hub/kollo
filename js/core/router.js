@@ -79,6 +79,20 @@ const Router = {
   }
 };
 
+function toggleDrawer(force) {
+  const side = $('#side');
+  const bd = $('#drawer-bd');
+  if (!side) return;
+  const willOpen = typeof force === 'boolean' ? force : !side.classList.contains('open');
+  side.classList.toggle('open', willOpen);
+  if (bd) bd.classList.toggle('in', willOpen);
+  document.body.style.overflow = willOpen && window.innerWidth < 960 ? 'hidden' : '';
+}
+
+function closeDrawer() {
+  toggleDrawer(false);
+}
+
 function buildNav() {
   const logoEl = $('#logo');
   if (logoEl && !logoEl.hasChildNodes()) {
@@ -88,11 +102,21 @@ function buildNav() {
   if (side) {
     side.textContent = '';
     const brand = document.createElement('div');
+    brand.className = 'side-head';
     brand.style.cssText = 'display:flex;gap:9px;align-items:center;padding:6px 10px 14px;font-weight:800';
     brand.appendChild(logoSVG(26));
     const bt = document.createElement('span');
     bt.textContent = 'كله';
     brand.appendChild(bt);
+    const sp = document.createElement('div');
+    sp.style.flex = '1';
+    brand.appendChild(sp);
+    const cls = document.createElement('button');
+    cls.className = 'b g sm side-close';
+    cls.setAttribute('aria-label', 'إغلاق القائمة');
+    cls.textContent = '✕';
+    cls.onclick = () => closeDrawer();
+    brand.appendChild(cls);
     side.appendChild(brand);
 
     MODULES.forEach(m => {
@@ -101,36 +125,20 @@ function buildNav() {
       a.href = '#/' + m.k;
       a.textContent = m.i + ' ' + m.t;
       if (S.route.name === m.k) a.setAttribute('aria-current', 'page');
+      a.onclick = () => closeDrawer();
       side.appendChild(a);
     });
   }
 
   const tabs = $('#tabs');
-  if (tabs) {
-    tabs.textContent = '';
-    [
-      ['today', '☀️', 'النهاردة'],
-      ['tasks', '✅', 'مهام'],
-      ['money', '💰', 'فلوس'],
-      ['ai', '🧠', 'الأسطى'],
-      ['more', '☰', 'كل حاجة']
-    ].forEach(([k, i, t]) => {
-      const b = document.createElement('button');
-      b.dataset.nav = k;
-      const s1 = document.createElement('span');
-      s1.textContent = i;
-      s1.style.fontSize = '1.15rem';
-      const s2 = document.createElement('b');
-      s2.textContent = t;
-      b.append(s1, s2);
-      if (S.route.name === k) b.setAttribute('aria-current', 'page');
-      b.onclick = () => (k === 'more' ? openMore() : Router.go(k));
-      tabs.appendChild(b);
-    });
-  }
+  if (tabs) tabs.textContent = '';
 }
 
 function openMore() {
+  if (window.innerWidth < 960) {
+    toggleDrawer(true);
+    return;
+  }
   const b = document.createElement('div');
   b.className = 'grid g3';
   MODULES.forEach(m => {
@@ -149,5 +157,5 @@ function openMore() {
 }
 
 Object.assign(window, {
-  MODULES, Router, buildNav, openMore
+  MODULES, Router, buildNav, openMore, toggleDrawer, closeDrawer
 });

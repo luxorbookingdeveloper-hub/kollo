@@ -1,4 +1,4 @@
-# Kollo Architecture Rules
+# Kollo Architecture & Development Rules
 
 ## 1. File Size Limit
 - **Strict Limit:** No file in the project may exceed **200 lines**.
@@ -14,4 +14,13 @@
 
 ## 4. Core Integrity
 - Preserve existing global contracts (`Bus`, `R`, `UI`, `AI`, `VIEWS`, `Hist`, `DB`, `S`).
-- Maintain full backward compatibility and passing internal tests.
+- Maintain full backward compatibility and passing internal tests (`#/tests`).
+
+## 5. Decision Memory & Tracking
+- Any significant architectural, structural, or design decision must be recorded in `MEMORY.md`.
+- Always check and respect past decisions before refactoring.
+
+## 6. Anti-AI-Slop & Intentional Craft
+- Reject generic "AI slop" aesthetics: no gratuitous gradients, purposeless neon glows, or repetitive template cards.
+- Follow `DESIGN.md` for authentic, human-crafted, content-first design.
+- Always consult the user and ask clarifying questions before implementing major design changes.

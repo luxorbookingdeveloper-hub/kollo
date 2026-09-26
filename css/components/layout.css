@@ -1,5 +1,6 @@
 /* ============================================================================
-   كله — Kollo | Components: Layout & Navigation (App, Header, Tabbar, Sidebar, Fab)
+   كُـلّـه — Kollo | Components: Layout & Navigation (App, Header, Drawer, Sidebar, Fab)
+   Full Screen Real-Estate Mobile Layout, Native Side Drawer & Zero Bottom Bar
    ============================================================================ */
 
 .app {
@@ -12,23 +13,27 @@
   position: sticky;
   top: 0;
   z-index: 40;
-  height: var(--head);
+  height: calc(var(--head) + env(safe-area-inset-top, 0px));
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-inline: var(--s-4);
   display: flex;
   align-items: center;
   gap: var(--s-2);
-  padding: 0 var(--s-3);
-  background: color-mix(in oklab, var(--bg) 82%, transparent);
-  backdrop-filter: saturate(140%) blur(12px);
+  background: var(--bg-glass);
+  backdrop-filter: saturate(160%) blur(16px);
+  -webkit-backdrop-filter: saturate(160%) blur(16px);
   border-bottom: 1px solid var(--line);
+  transition: background var(--t-2) var(--ez), border-color var(--t-2) var(--ez);
 }
 
 .head .ttl {
   font-weight: 800;
-  letter-spacing: -.02em;
-  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+  font-size: 1.15rem;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  color: var(--tx);
 }
 
 .head .sp {
@@ -36,72 +41,130 @@
 }
 
 .main {
-  padding: var(--s-4) var(--s-3) calc(var(--tabs) + 84px);
-  max-width: 1180px;
+  padding: var(--s-4) var(--s-3) calc(var(--s-12) + env(safe-area-inset-bottom, 0px));
+  max-width: 1200px;
   margin-inline: auto;
   width: 100%;
 }
 
-.sidebar {
-  display: none;
-}
-
-.tabbar {
+/* Mobile Drawer Overlay Backdrop */
+.drawer-bd {
   position: fixed;
-  inset-inline: 0;
+  inset: 0;
+  z-index: 55;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--t-2) var(--ez);
+}
+
+.drawer-bd.in {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Mobile Side Drawer */
+.sidebar {
+  position: fixed;
+  top: 0;
   bottom: 0;
-  z-index: 45;
-  height: calc(var(--tabs) + env(safe-area-inset-bottom));
-  padding-bottom: env(safe-area-inset-bottom);
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  background: color-mix(in oklab, var(--bg-2) 92%, transparent);
-  backdrop-filter: blur(10px);
-  border-top: 1px solid var(--line);
-}
-
-.tabbar b {
-  font-weight: 600;
-  font-size: .66rem;
-}
-
-.tabbar button {
+  inset-inline-start: auto;
+  inset-inline-end: 0;
+  z-index: 56;
+  width: min(310px, 84vw);
+  height: 100dvh;
+  overflow-y: auto;
+  background: var(--bg-2);
+  border-inline-start: 1px solid var(--line);
+  box-shadow: var(--sh-4);
+  padding: calc(var(--s-3) + env(safe-area-inset-top, 0px)) var(--s-3) calc(var(--s-6) + env(safe-area-inset-bottom, 0px));
+  transform: translateX(105%);
+  transition: transform var(--t-2) var(--ez);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-  color: var(--tx-3);
-  transition: color var(--t-1) var(--ez);
+  gap: 4px;
 }
 
-.tabbar button[aria-current="page"] {
+html[dir="rtl"] .sidebar {
+  transform: translateX(105%);
+}
+
+.sidebar.open {
+  transform: translateX(0) !important;
+}
+
+.side-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px 12px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 6px;
+}
+
+.side-close {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-full);
+}
+
+.sidebar a {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: var(--r-2);
+  color: var(--tx-2);
+  font-weight: 700;
+  font-size: 0.92rem;
+  min-height: 44px;
+  transition: all var(--t-1) var(--ez);
+}
+
+.sidebar a:hover {
+  background: var(--bg-3);
+  color: var(--tx);
+}
+
+.sidebar a[aria-current="page"] {
+  background: color-mix(in oklab, var(--accent) 12%, transparent);
   color: var(--accent);
+  font-weight: 800;
+}
+
+/* Tabbar removed for maximum mobile screen area */
+.tabbar {
+  display: none !important;
 }
 
 .fab {
   position: fixed;
-  inset-inline-end: 16px;
-  bottom: calc(var(--tabs) + 18px + env(safe-area-inset-bottom));
+  inset-inline-end: 20px;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
   z-index: 46;
-  width: 56px;
-  height: 56px;
+  width: 54px;
+  height: 54px;
   border-radius: var(--r-full);
   background: var(--accent);
   color: var(--on-accent);
-  box-shadow: var(--sh-3);
+  box-shadow: var(--sh-accent), var(--sh-2);
   display: grid;
   place-items: center;
-  transition: transform var(--t-1) var(--ez);
+  font-size: 1.45rem;
+  font-weight: 700;
+  transition: transform var(--t-1) var(--ez), background var(--t-1), box-shadow var(--t-1);
+}
+
+.fab:hover {
+  background: var(--accent-2);
+  box-shadow: var(--sh-accent), var(--sh-3);
+  transform: scale(1.05);
 }
 
 .fab:active {
-  transform: scale(.93);
-}
-
-.focus-on .head,
-.focus-on .tabbar,
-.focus-on .fab,
-.focus-on .sidebar {
-  display: none !important;
+  transform: scale(0.92);
 }

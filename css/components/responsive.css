@@ -1,56 +1,108 @@
 /* ============================================================================
-   كله — Kollo | Components: Responsive Layout & Desktop Breakpoints
+   كُـلّـه — Kollo | Components: Responsive Layout & Tablet/Desktop Breakpoints
+   Fluid Adaptive Scaling from Mobile (375px) to Tablet (768px) and Desktop (1200px+)
    ============================================================================ */
 
+/* Tablet & Intermediate Screens (>= 640px) */
+@media (min-width: 640px) {
+  .main {
+    padding-inline: var(--s-6);
+  }
+
+  .grid.g2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid.g3 {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+
+  .card.pad {
+    padding: var(--s-6);
+  }
+
+  .sec-h {
+    margin: var(--s-8) 0 var(--s-3);
+  }
+}
+
+/* Desktop Screens (>= 960px) */
 @media (min-width: 960px) {
   .app {
     grid-template-columns: var(--side) 1fr;
   }
 
+  .drawer-bd {
+    display: none !important;
+  }
+
+  .side-close {
+    display: none !important;
+  }
+
+  [data-act="menu"] {
+    display: none !important;
+  }
+
   .sidebar {
-    display: block;
     position: sticky;
     top: 0;
+    bottom: auto;
+    inset-inline-start: auto;
+    inset-inline-end: auto;
+    z-index: 10;
+    width: auto;
     height: 100dvh;
-    overflow: auto;
+    box-shadow: none;
+    border-inline-start: 0;
     border-inline-end: 1px solid var(--line);
-    background: var(--bg-2);
+    transform: none !important;
     padding: var(--s-4) var(--s-3);
   }
 
   .sidebar a {
     display: flex;
-    gap: 10px;
+    gap: 12px;
     align-items: center;
-    padding: 9px 11px;
+    padding: 10px 14px;
     border-radius: var(--r-2);
     color: var(--tx-2);
     font-weight: 700;
-    font-size: .88rem;
-    min-height: 42px;
+    font-size: 0.92rem;
+    min-height: 44px;
+    transition: all var(--t-1) var(--ez);
+  }
+
+  .sidebar a:hover {
+    background: var(--bg-3);
+    color: var(--tx);
+    transform: translateX(-2px);
   }
 
   .sidebar a[aria-current="page"] {
-    background: var(--bg-3);
-    color: var(--tx);
+    background: color-mix(in oklab, var(--accent) 12%, transparent);
+    color: var(--accent);
+    font-weight: 800;
   }
 
   .tabbar {
-    display: none;
+    display: none !important;
   }
 
   .fab {
-    bottom: 24px;
+    bottom: 28px;
+    inset-inline-end: 28px;
   }
 
   .main {
-    padding-bottom: var(--s-12);
+    padding: var(--s-6) var(--s-8) var(--s-12);
+    max-width: 1240px;
   }
 
   .toasts {
-    bottom: 24px;
+    bottom: 28px;
     inset-inline-start: auto;
-    inset-inline-end: 24px;
+    inset-inline-end: 28px;
     justify-items: end;
   }
 
@@ -62,10 +114,11 @@
     right: 0;
     inset-inline: 0;
     margin-inline: auto;
-    width: min(580px, 92vw);
+    width: min(600px, 92vw);
     max-height: 86dvh;
     border-radius: var(--r-4);
     border: 1px solid var(--line);
+    box-shadow: var(--sh-4);
     transform: translateY(-46%) scale(0.96);
     opacity: 0;
     pointer-events: none;

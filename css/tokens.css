@@ -1,31 +1,134 @@
-/* ============ 01. DESIGN TOKENS (CSS Vars) ============ */
+/* ============================================================================
+   كُـلّـه — Kollo | 01. DESIGN TOKENS (CSS Vars)
+   Modern, Clean, High-Contrast Palette with Crisp Typography & Elevation
+   ============================================================================ */
 :root {
-  --f-ar: "Cairo", "Tajawal", "Noto Kufi Arabic", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", sans-serif;
-  --sand-50: #fbf7f0; --sand-100: #f4ece0; --sand-200: #e8dbc8; --sand-300: #d8c4a6; --sand-400: #bfa579;
-  --ink-900: #1b1712; --ink-800: #2a241c; --ink-700: #3c342a; --ink-600: #5b5045; --ink-400: #8b7f70; --ink-300: #ab9f90;
-  --nile: #0f766e; --nile-2: #14958b; --mint: #2fbf9b; --terra: #c2410c; --amber: #d97706; --rose: #be123c; --violet: #6d28d9;
-  --bg: var(--sand-50); --bg-2: #fff; --bg-3: var(--sand-100); --line: var(--sand-200); --line-2: var(--sand-300);
-  --tx: var(--ink-900); --tx-2: var(--ink-600); --tx-3: var(--ink-400);
-  --accent: var(--nile); --accent-2: var(--nile-2); --on-accent: #fff; --warn: var(--amber); --bad: var(--rose); --good: var(--mint);
-  --r-1: 8px; --r-2: 12px; --r-3: 16px; --r-4: 22px; --r-full: 999px;
-  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-6: 24px; --s-8: 32px; --s-12: 48px;
-  --sh-1: 0 1px 2px rgba(27,23,18,.06), 0 1px 3px rgba(27,23,18,.04);
-  --sh-2: 0 4px 10px rgba(27,23,18,.07), 0 2px 4px rgba(27,23,18,.04);
-  --sh-3: 0 12px 28px rgba(27,23,18,.12), 0 4px 8px rgba(27,23,18,.06);
-  --sh-4: 0 28px 60px rgba(27,23,18,.20);
-  --ez: cubic-bezier(.2,.8,.2,1); --t-1: 150ms; --t-2: 250ms;
-  --fs: 1rem; --side: 264px; --head: 58px; --tabs: 62px;
-  font-feature-settings: "ss01" 1, "liga" 1, "calt" 1;
+  --f-ar: "Tajawal", "Cairo", "Noto Kufi Arabic", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --f-en: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+
+  /* Modern Slate & Neutral Foundations */
+  --slate-50: #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1;
+  --slate-400: #94a3b8;
+  --slate-500: #64748b;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-800: #1e293b;
+  --slate-900: #0f172a;
+
+  /* Modern Semantic Highlights */
+  --teal-600: #0d9488;
+  --teal-500: #14b8a6;
+  --teal-700: #0f766e;
+  --teal-50: #f0fdfa;
+  --mint: #10b981;
+  --amber: #f59e0b;
+  --rose: #ef4444;
+  --violet: #8b5cf6;
+  --blue: #3b82f6;
+
+  /* Surfaces & Canvas */
+  --bg: #f8fafc;
+  --bg-2: #ffffff;
+  --bg-3: #f1f5f9;
+  --bg-glass: rgba(255, 255, 255, 0.82);
+  --line: #e2e8f0;
+  --line-2: #cbd5e1;
+
+  /* Typography Colors (WCAG AAA/AA 4.5:1+) */
+  --tx: #0f172a;
+  --tx-2: #475569;
+  --tx-3: #94a3b8;
+
+  /* Action & Accent */
+  --accent: #0d9488;
+  --accent-2: #14b8a6;
+  --accent-light: #ccfbf1;
+  --on-accent: #ffffff;
+
+  /* Feedback */
+  --warn: #f59e0b;
+  --bad: #ef4444;
+  --good: #10b981;
+
+  /* Geometry & Scales */
+  --r-1: 8px;
+  --r-2: 12px;
+  --r-3: 16px;
+  --r-4: 24px;
+  --r-full: 9999px;
+
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-6: 24px;
+  --s-8: 32px;
+  --s-12: 48px;
+
+  /* Modern Multi-Layer Ambient Shadows */
+  --sh-1: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+  --sh-2: 0 4px 12px -2px rgba(15, 23, 42, 0.07), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+  --sh-3: 0 12px 24px -4px rgba(15, 23, 42, 0.10), 0 4px 8px -2px rgba(15, 23, 42, 0.04);
+  --sh-4: 0 24px 48px -12px rgba(15, 23, 42, 0.18);
+  --sh-accent: 0 4px 14px 0 rgba(13, 148, 136, 0.35);
+
+  /* Easing & Transition (Spring-like smooth) */
+  --ez: cubic-bezier(0.16, 1, 0.3, 1);
+  --t-1: 150ms;
+  --t-2: 250ms;
+
+  /* Layout Metrics */
+  --fs: 1rem;
+  --side: 260px;
+  --head: 60px;
+  --tabs: 68px;
+
+  font-feature-settings: "ss01" 1, "cv01" 1, "liga" 1;
 }
 
 html[data-theme="dark"] {
-  --bg: #131110; --bg-2: #1c1917; --bg-3: #241f1c; --line: #2f2925; --line-2: #3d352f;
-  --tx: #f6f1e8; --tx-2: #c9c0b3; --tx-3: #948b7f; --accent: #2fbf9b; --accent-2: #41d3ae; --on-accent: #08221d;
-  --sh-1: 0 1px 2px rgba(0,0,0,.4); --sh-2: 0 4px 10px rgba(0,0,0,.45);
-  --sh-3: 0 12px 28px rgba(0,0,0,.55); --sh-4: 0 28px 60px rgba(0,0,0,.6);
+  --bg: #090d16;
+  --bg-2: #111827;
+  --bg-3: #182235;
+  --bg-glass: rgba(17, 24, 39, 0.85);
+  --line: #1e293b;
+  --line-2: #2e3d55;
+
+  --tx: #f8fafc;
+  --tx-2: #cbd5e1;
+  --tx-3: #8292a8;
+
+  --accent: #14b8a6;
+  --accent-2: #2dd4bf;
+  --accent-light: rgba(20, 184, 166, 0.18);
+  --on-accent: #042f2e;
+
+  --warn: #fbbf24;
+  --bad: #f87171;
+  --good: #34d399;
+
+  --sh-1: 0 1px 3px 0 rgba(0, 0, 0, 0.45);
+  --sh-2: 0 4px 14px 0 rgba(0, 0, 0, 0.52);
+  --sh-3: 0 12px 28px 0 rgba(0, 0, 0, 0.62);
+  --sh-4: 0 24px 50px 0 rgba(0, 0, 0, 0.75);
+  --sh-accent: 0 4px 18px 0 rgba(45, 212, 191, 0.35);
 }
 
 html[data-theme="retro"] {
-  --bg: #f2e9d8; --bg-2: #fffdf6; --bg-3: #eadfc7; --line: #d9c9a5; --line-2: #c3ad80;
-  --tx: #2b2417; --tx-2: #5c4f37; --accent: #8a5a1f; --accent-2: #b1782f; --on-accent: #fff8ec;
+  --bg: #f8f4ec;
+  --bg-2: #ffffff;
+  --bg-3: #eee7d7;
+  --bg-glass: rgba(255, 255, 255, 0.88);
+  --line: #dfd5c2;
+  --line-2: #c9bca3;
+  --tx: #1f1b14;
+  --tx-2: #524738;
+  --tx-3: #877764;
+  --accent: #b45309;
+  --accent-2: #d97706;
+  --accent-light: #fef3c7;
+  --on-accent: #ffffff;
 }
