@@ -103,6 +103,23 @@ window.createAIChatUI = function (log, st, stop, send) {
       d.className = 'aimsg a';
       d.style.borderInlineStart = '4px solid var(--bad)';
       d.appendChild(mdLite('حصلت مشكلة: ' + t));
+
+      const bar = document.createElement('div');
+      bar.style.marginTop = '8px';
+      const cp = document.createElement('button');
+      cp.className = 'b sm g';
+      cp.style.fontSize = '12px';
+      cp.textContent = '📋 نسخ نص الخطأ';
+      cp.onclick = async () => {
+        const ok = await copyText(t);
+        if (ok) {
+          cp.textContent = '✅ تم النسخ!';
+          setTimeout(() => { cp.textContent = '📋 نسخ نص الخطأ'; }, 2000);
+        }
+      };
+      bar.appendChild(cp);
+      d.appendChild(bar);
+
       log.appendChild(d);
       log.scrollTop = log.scrollHeight;
     },

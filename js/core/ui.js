@@ -35,12 +35,28 @@ UI.toast = function(msg, opt) {
     el.appendChild(b);
   }
 
+  const toCopy = opt.copy || (opt.copyable || /فشل|خطأ|رفض|مرفوض/i.test(msg) ? (typeof opt.copy === 'string' ? opt.copy : msg) : null);
+  if (toCopy) {
+    const cp = document.createElement('button');
+    cp.className = 'u';
+    cp.textContent = '📋 نسخ';
+    cp.title = 'نسخ نص الخطأ';
+    cp.onclick = async (e) => {
+      e.stopPropagation();
+      if (typeof copyText === 'function') await copyText(toCopy);
+      cp.textContent = '✅ تم النسخ';
+      setTimeout(() => { cp.textContent = '📋 نسخ'; }, 2000);
+    };
+    el.appendChild(cp);
+  }
+
   box.appendChild(el);
+  const defMs = toCopy ? 9000 : 4200;
   setTimeout(() => {
     el.style.transition = 'opacity .2s';
     el.style.opacity = '0';
     setTimeout(() => el.remove(), 240);
-  }, opt.ms || 4200);
+  }, opt.ms || defMs);
 
   return el;
 };

@@ -106,6 +106,28 @@ function mdLite(text) {
   return wrap;
 }
 
+async function copyText(text) {
+  const str = String(text == null ? '' : text);
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(str);
+      return true;
+    }
+  } catch (e) {}
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = str;
+    ta.style.cssText = 'position:fixed;opacity:0;pointer-events:none';
+    document.body.appendChild(ta);
+    ta.select();
+    const ok = document.execCommand('copy');
+    ta.remove();
+    return ok;
+  } catch (e) {
+    return false;
+  }
+}
+
 Object.assign(window, {
-  fuzzy, mdLite
+  fuzzy, mdLite, copyText
 });

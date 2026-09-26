@@ -85,10 +85,40 @@ function renderAITestButton(test, key, prov, baseUrl) {
         UI.toast('اختار موديل الأول');
         return;
       }
+      test.disabled = true;
+      test.textContent = 'بيجرّب…';
       const r = await AI.call([{ role: 'user', content: 'قول "تمام" بس.' }], null, null);
       UI.toast('الاتصال شغّال ✅ ' + String(r.text || '').slice(0, 40));
+      const oldErr = document.getElementById('ai-test-err');
+      if (oldErr) oldErr.remove();
     } catch (e) {
-      UI.toast('فشل: ' + e.message);
+      UI.toast('فشل: ' + e.message, { copy: e.message, ms: 12000 });
+      let errBox = document.getElementById('ai-test-err');
+      if (!errBox) {
+        errBox = document.createElement('div');
+        errBox.id = 'ai-test-err';
+        errBox.className = 'card pad sm';
+        errBox.style.cssText = 'margin-top:10px;border:1px solid var(--bad);background:var(--bg-3)';
+        const row = test.closest('.row') || test.parentNode;
+        row.parentNode.insertBefore(errBox, row.nextSibling);
+      }
+      errBox.textContent = '';
+      const p = document.createElement('div');
+      p.className = 'xs';
+      p.style.cssText = 'color:var(--bad);font-weight:700;margin-bottom:8px;line-height:1.6';
+      p.textContent = '⚠️ تفاصيل الخطأ: ' + e.message;
+      const cpBtn = document.createElement('button');
+      cpBtn.className = 'b sm';
+      cpBtn.textContent = '📋 نسخ نص الخطأ';
+      cpBtn.onclick = async () => {
+        if (typeof copyText === 'function') await copyText(e.message);
+        cpBtn.textContent = '✅ تم النسخ للحافظة';
+        setTimeout(() => { cpBtn.textContent = '📋 نسخ نص الخطأ'; }, 2200);
+      };
+      errBox.append(p, cpBtn);
+    } finally {
+      test.disabled = false;
+      test.textContent = '🔌 اختبار الاتصال';
     }
   };
 }
