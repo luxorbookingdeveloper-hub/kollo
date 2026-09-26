@@ -13,13 +13,14 @@ Object.assign(window.AI, {
 
     msgs.forEach(m => {
       if (m.role === 'system') {
-        sys = { role: 'user', parts: [{ text: m.content || '' }] };
+        sys = { parts: [{ text: m.content || '' }] };
         return;
       }
       if (m.role === 'tool') {
+        const resp = (typeof m.result === 'object' && m.result !== null) ? m.result : { output: m.result };
         contents.push({
           role: 'user',
-          parts: [{ functionResponse: { name: m.name, response: m.result || { ok: false } } }]
+          parts: [{ functionResponse: { name: m.name, response: resp } }]
         });
         return;
       }

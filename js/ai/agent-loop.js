@@ -12,6 +12,12 @@ async function agentRun(userText, ui) {
   hist.forEach(m => msgs.push(m));
   msgs.push({ role: 'user', content: userText });
   (S.cache.chat = S.cache.chat || []).push({ role: 'user', content: userText });
+  if (AI.chatId) {
+    try {
+      dbPut('aiMessages', { id: uid(), chatId: AI.chatId, role: 'user', content: userText, at: now(), createdAt: now(), deletedAt: null });
+      dbPut('aiChats', { id: AI.chatId, title: String(userText).slice(0, 36), updatedAt: now(), createdAt: now(), deletedAt: null });
+    } catch (e) {}
+  }
 
   const tools = toolSchemas();
   const batch = Hist.begin('الأسطى: ' + String(userText).slice(0, 40));
@@ -83,6 +89,11 @@ async function agentRun(userText, ui) {
 
       if (!calls.length) {
         S.cache.chat.push({ role: 'assistant', content: res.text || '' });
+        if (AI.chatId && res.text) {
+          try {
+            dbPut('aiMessages', { id: uid(), chatId: AI.chatId, role: 'assistant', content: res.text, at: now(), createdAt: now(), deletedAt: null });
+          } catch (e) {}
+        }
         if (res.finish && ['MAX_TOKENS', 'length'].indexOf(res.finish) > -1) {
           ui.note('الرد اتقطع لأن حد التوكنز خلص — زوّد max tokens من الإعدادات.');
         }
@@ -98,7 +109,7 @@ async function agentRun(userText, ui) {
       /* موافقة على الأفعال الحسّاسة */
       const risky = calls.filter(c => {
         const t = TOOLS[c.name];
-        return !t || t.risk === 'destructive' || DESTRUCTIVE.test(c.name);
+        return t && (t.risk === 'destructive' || DESTRUCTIVE.test(c.name));
       });
 
       if (risky.length && !s.trust) {

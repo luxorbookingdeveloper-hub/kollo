@@ -129,9 +129,6 @@ function buildNav() {
       side.appendChild(a);
     });
   }
-
-  const tabs = $('#tabs');
-  if (tabs) tabs.textContent = '';
 }
 
 function openMore() {

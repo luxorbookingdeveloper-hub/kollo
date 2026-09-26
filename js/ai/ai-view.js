@@ -68,6 +68,19 @@ window.VIEWS.ai = async () => {
   stop.textContent = 'كفاية';
   stop.hidden = true;
 
+  const resetBtn = document.createElement('button');
+  resetBtn.className = 'b g sm';
+  resetBtn.title = 'محادثة جديدة';
+  resetBtn.setAttribute('aria-label', 'محادثة جديدة');
+  resetBtn.textContent = '🔄';
+  resetBtn.onclick = () => {
+    AI.chatId = uid();
+    S.cache.chat = [];
+    log.textContent = '';
+    msg('a', 'بدأنا محادثة جديدة. اسألني عن داتاك أو قولي أعمل إيه.');
+  };
+  bar.prepend(resetBtn);
+
   bar.append(ta, send, stop);
   wrap.append(log, st, bar);
   box.appendChild(wrap);
@@ -89,6 +102,20 @@ window.VIEWS.ai = async () => {
   box.appendChild(chips);
 
   const { msg, ui } = window.createAIChatUI(log, st, stop, send);
+
+  if (!S.cache.chat || !S.cache.chat.length) {
+    try {
+      const chats = await R.aiChats.all();
+      const latest = chats.sort((a, b) => (b.updatedAt || '').localeCompare(a.updatedAt || ''))[0];
+      if (latest) {
+        AI.chatId = latest.id;
+        const saved = (await R.aiMessages.byIndex('chatId', IDBKeyRange.only(latest.id)))
+          .sort((a, b) => (a.at || '').localeCompare(b.at || ''))
+          .slice(-30);
+        if (saved.length) S.cache.chat = saved.map(m => ({ role: m.role, content: m.content }));
+      }
+    } catch (e) {}
+  }
 
   (S.cache.chat || []).forEach(m => msg(m.role === 'user' ? 'u' : 'a', m.content || ''));
   if (!(S.cache.chat || []).length) {

@@ -70,14 +70,14 @@
   position: fixed;
   top: 0;
   bottom: 0;
-  inset-inline-start: auto;
-  inset-inline-end: 0;
+  inset-inline-start: 0;
+  inset-inline-end: auto;
   z-index: 56;
   width: min(310px, 84vw);
   height: 100dvh;
   overflow-y: auto;
   background: var(--bg-2);
-  border-inline-start: 1px solid var(--line);
+  border-inline-end: 1px solid var(--line);
   box-shadow: var(--sh-4);
   padding: calc(var(--s-3) + env(safe-area-inset-top, 0px)) var(--s-3) calc(var(--s-6) + env(safe-area-inset-bottom, 0px));
   transform: translateX(105%);
@@ -87,8 +87,8 @@
   gap: 4px;
 }
 
-html[dir="rtl"] .sidebar {
-  transform: translateX(105%);
+html[dir="ltr"] .sidebar {
+  transform: translateX(-105%);
 }
 
 .sidebar.open {
