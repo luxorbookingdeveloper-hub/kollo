@@ -1,6 +1,8 @@
 # كُـلّـه — Kollo 🌟
 > **مدير حياتك اللي مش بينسى** | نظام إدارة حياة شخصي متكامل (Life OS)، محلي بنسبة 100%، أوفلاين، وبدون أي مكتبات أو تبعيات خارجية.
 
+🌐 **رابط النسخة المباشرة (Live Demo):** [https://luxorbookingdeveloper-hub.github.io/kollo/](https://luxorbookingdeveloper-hub.github.io/kollo/)
+
 ---
 
 ## 📖 عن المشروع
