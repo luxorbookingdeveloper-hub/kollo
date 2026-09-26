@@ -56,7 +56,7 @@ Object.assign(window.AI, {
       const out = [];
       let token = '';
       do {
-        const u = AI.base() + '/models?pageSize=200' + (token ? '&pageToken=' + encodeURIComponent(token) : '');
+        const u = AI.base() + '/models?pageSize=200&key=' + encodeURIComponent(AI._key) + (token ? '&pageToken=' + encodeURIComponent(token) : '');
         const r = await fetch(u, { headers: AI.headers() });
         if (!r.ok) throw new Error(await AI.errText(r));
         const j = await r.json();
@@ -102,7 +102,8 @@ Object.assign(window.AI, {
       msg = (j.error && (j.error.message || j.error.code)) || t;
     } catch (e) {}
 
-    if (r.status === 401 || r.status === 403) return 'المفتاح مرفوض (401/403) — راجع مفتاح الـAPI.';
+    const detail = (msg && msg !== t && typeof msg === 'string') ? (' (' + msg.slice(0, 160) + ')') : '';
+    if (r.status === 401 || r.status === 403) return 'المفتاح مرفوض (401/403)' + detail + ' — راجع مفتاح الـAPI.';
     if (r.status === 404) return 'الموديل أو الـEndpoint مش موجود (404) — جرّب موديل تاني.';
     if (r.status === 429) return 'وصلت حد الطلبات (429) — استنى شوية وجرّب.';
     if (r.status === 400 && /thought signature|thought_signature/i.test(String(msg))) return 'THOUGHT_SIG:' + msg;

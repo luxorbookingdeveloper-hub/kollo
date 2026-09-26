@@ -17,7 +17,8 @@ Object.assign(window.AI, {
 
     let url, body;
     if (s.provider === 'gemini') {
-      url = AI.base() + '/models/' + encodeURIComponent(s.model) + ':' + (stream ? 'streamGenerateContent?alt=sse' : 'generateContent');
+      const ep = stream ? 'streamGenerateContent?alt=sse' : 'generateContent';
+      url = AI.base() + '/models/' + encodeURIComponent(s.model) + ':' + ep + (ep.includes('?') ? '&' : '?') + 'key=' + encodeURIComponent(AI._key);
       body = AI.toGemini(msgs, tools);
     } else {
       url = AI.base() + '/chat/completions';
